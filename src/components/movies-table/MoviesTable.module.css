@@ -1,0 +1,22 @@
+.row:focus{
+    background-color: gray;
+    color: white;
+    font-weight: bolder;
+}
+
+.row:focus:hover{
+    background-color: gray;
+}
+
+.row:hover{
+    background-color: gray;
+}
+
+.cell{
+    padding: 0.6rem;
+}
+
+.card{
+    z-index: 1000;
+}
+

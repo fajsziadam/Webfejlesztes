@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import { getMovieById, getMovies, addMovie, deleteMovieById, updateMovieById } from "./query.mjs"
+import { getMovieById, getMovies, addMovie, deleteMovieById, updateMovieById, getGenres } from "./query.mjs"
 
 const app = express()
 
@@ -47,6 +47,10 @@ app.put("/movie/:id", async (req, res) => {
     })
 })
 
+app.get("/genre", async (req, res) => {
+    const result = await getGenres()
+    res.send(result)
+})
 
 
 

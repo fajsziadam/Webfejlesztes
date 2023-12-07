@@ -18,7 +18,7 @@ export async function getMovieById(id) {
 }
 
 export async function addMovie(newMovie) {
-    const result = await pool.query(`INSERT INTO movie (title, genre, release_date) VALUES (?,?,?)`, [newMovie.title, newMovie.genre,newMovie.release_date]);
+    const result = await pool.query(`INSERT INTO movie (title, genre, release_date) VALUES (?,?,date(?))`, [newMovie.title, newMovie.genre,newMovie.release_date]);
     return result.insertId;
 }
 
@@ -30,4 +30,9 @@ export async function deleteMovieById(id) {
 export async function updateMovieById(movie) {
     const result = await pool.query(`UPDATE movie SET title = ?, genre = ?, release_date = ? WHERE id = ?`, [movie.title, movie.genre, movie.release_date, movie.id]);
     return result[0]; 
+}
+
+export async function getGenres(){
+    const result = await pool.query(`SELECT * from genre`)
+    return result[0]
 }
