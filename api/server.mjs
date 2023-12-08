@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import { getMovieById, getMovies, addMovie, deleteMovieById, updateMovieById, getGenres } from "./query.mjs"
+import { getMovieById, getMovies, addMovie, deleteMovieById, updateMovieById, getGenres, getGenresById, deleteGenreById, updateGenreById, addGenre } from "./query.mjs"
 
 const app = express()
 
@@ -15,9 +15,20 @@ app.get("/movie", async (req, res) => {
     res.send(result)
 })
 
+app.get("/genre", async (req, res) => {
+    const result = await getGenres()
+    res.send(result)
+})
+
 app.get("/movie/:id", async (req, res) => {
     const id = req.params.id
     const result = await getMovieById(id)
+    res.send(result)
+})
+
+app.get("/genre/:id", async (req, res) => {
+    const id = req.params.id
+    const result = await getGenresById(id)
     res.send(result)
 })
 
@@ -27,9 +38,21 @@ app.post("/movie", async (req, res) => {
     res.send(result)
 })
 
+app.post("/genre", async (req, res) => {
+    const new_genre = req.body
+    const result = await addGenre(new_genre)
+    res.send(result)
+})
+
 app.delete("/movie/:id", async (req, res) => {
     const id = req.params.id
     const result = await deleteMovieById(id)
+    res.send(result)
+})
+
+app.delete("/genre/:id", async (req, res) => {
+    const id = req.params.id
+    const result = await deleteGenreById(id)
     res.send(result)
 })
 
@@ -47,11 +70,22 @@ app.put("/movie/:id", async (req, res) => {
     })
 })
 
-app.get("/genre", async (req, res) => {
-    const result = await getGenres()
-    res.send(result)
-})
+app.put("/genre/:id", async (req, res) => {
+    const id = req.params.id
+    const { name } = req.body
 
+    try {
+        const updatedGenre = await getGenresById(id).then((result) => {
+            if (name) result[0].name = name;
+            return result[0];
+        });
 
+        const queryResult = await updateGenreById(updatedGenre);
+        res.send(updatedGenre);
+    } catch (error) {
+        console.error("Error updating genre:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
 
 app.listen(7000)

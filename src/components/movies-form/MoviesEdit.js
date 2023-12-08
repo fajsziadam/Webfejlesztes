@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router';
+import styles from './MoviesEdit.module.css';
 
 const MoviesEdit = () => {
 
@@ -50,19 +51,28 @@ const MoviesEdit = () => {
 
 
 
-    return ( <div>
-        <form onSubmit={(e) => e.preventDefault()}>
-            <input value={title} type='text' placeholder='title...' onChange={(e) => setTitle(e.target.value)} />
-            <select value={genre} onChange={(e) => setGenre(e.target.value)}>
-                <option></option>
-                {genres.map((elem) => {
-                return <option key={elem.id} value={elem.id}>{elem.name}</option>
-            })}</select>
-            <input value={release_date} type='text' placeholder='release date(YYYY-MM-DD)' onChange={(e) => setReleasedate(e.target.value)}/>
-            <button onClick={editHandler}>edit</button>
-            <button onClick={cancelHandler}>cancel</button>
-        </form>
-    </div> );
+    return (
+        <div className={styles.container}>
+            <div className={styles.description}>🎬  Edit Movies</div>
+            <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
+                <input value={title} type='text' placeholder='title...' onChange={(e) => setTitle(e.target.value)} className={styles.inputField} />
+                <select value={genre} onChange={(e) => setGenre(e.target.value)} className={styles.inputField}>
+                    <option></option>
+                    {genres.map((elem) => {
+                        return <option key={elem.id} value={elem.id}>{elem.name}</option>
+                    })}
+                </select>
+                <input value={release_date} type='text' placeholder='release date(YYYY-MM-DD)' onChange={(e) => setReleasedate(e.target.value)} className={styles.inputField} />
+                <div className={styles.buttonsContainer}>
+                    <button onClick={editHandler} className={`${styles.button} ${styles.buttonEdit}`}>
+                        edit
+                    </button>
+                    <button onClick={cancelHandler} className={`${styles.button} ${styles.buttonCancel}`}>
+                        cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    );
 }
- 
 export default MoviesEdit;

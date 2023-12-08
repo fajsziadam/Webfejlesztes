@@ -1,0 +1,52 @@
+.buttonsContainer {
+    display: flex;
+    justify-content: space-around; 
+    margin-top: 10px; 
+    margin-bottom: 10px;
+}
+
+.button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buttonAdd {
+    background-color: #2ecc71;
+    color: white;
+    font-weight: bold; 
+}
+
+.buttonEdit {
+    background-color: #3498db; 
+    color: white;
+    font-weight: bold; 
+}
+
+.buttonDelete {
+    background-color:  #e74c3c;
+    color: white;
+    font-weight: bold; 
+}
+
+.buttonMovies {
+    background-color: #f39c12;
+    color: white;
+    font-weight: bold; 
+}
+
+.button:hover {
+    background-color: #34495e;
+    color: #ffffff;
+}
+
+.description {
+    background-color: lightskyblue;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+    padding: 10px; 
+    text-align: center;
+}

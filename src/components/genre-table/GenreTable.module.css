@@ -1,23 +1,23 @@
-
-.row{
- background-color: lightblue;
+.row {
+    background-color: lightblue;
+    transition: background-color 0.3s ease;
 }
 
-.row:focus{
+.row:focus {
     background-color: lightcyan;
     color: black;
     font-weight: bolder;
 }
 
-.row:focus:hover{
+.row:focus:hover {
     background-color: lightcyan;
 }
 
-.row:hover{
+.row:hover {
     background-color: lightcyan;
 }
 
-.cell{
+.cell {
     padding: 0.6rem;
     font-weight: bold; 
 }
@@ -34,4 +34,3 @@
     border-radius: 5px; 
     overflow: hidden; 
 }
-

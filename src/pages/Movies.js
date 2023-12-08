@@ -19,7 +19,6 @@ function Movies(){
 
     const selectChangeHandler = (m) => {
         setSelected(m)
-        console.log(m)
     } 
 
     const deleteHandler = () => {

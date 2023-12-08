@@ -36,3 +36,25 @@ export async function getGenres(){
     const result = await pool.query(`SELECT * from genre`)
     return result[0]
 }
+
+export async function getGenresById(id) {
+    const result = await pool.query(`SELECT * FROM genre WHERE id = ?`, [id]);
+    return result[0];
+  }
+  
+
+export async function addGenre(newGenre) {
+    const result = await pool.query(`INSERT INTO genre (name) VALUES (?)`, [newGenre.name]);
+    return result.insertId;
+}
+
+export async function deleteGenreById(id) {
+    const result = await pool.query(`DELETE FROM genre WHERE id = ?`, [id]);
+    return result[0]; 
+}
+
+export async function updateGenreById(genre) {
+    const result = await pool.query(`UPDATE genre SET name = ? WHERE id = ?`, [genre.name, genre.id]);
+    return result[0];
+  }
+  
